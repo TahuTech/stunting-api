@@ -37,7 +37,7 @@ class BalitaController extends Controller
     {
         $validator = Validator::make($request->all(), [
             'nama' => ['required'],
-            'berat' => ['required', 'numeric'],
+            'berat' => ['required', 'num eric'],
             'tinggi' => ['required', 'numeric'],
             'lkkepala' => ['required', 'numeric']
         ]);
@@ -52,14 +52,14 @@ class BalitaController extends Controller
         try {
             $balita = Balita::create($request->all());
             $response = [
-                'message' => 'Data Balita Berhasil Di Buat',
+                'message' => 'Data Balita Berhasil Di Simpan',
                 'data' => $balita
             ];
 
             return response()->json($response, Response::HTTP_CREATED);
         } catch (QueryException $e) {
             return response()->json([
-                'message' => "Data Gagal " . $e->errorInfo
+                'message' => "Data Gagal" . $e->errorInfo
             ]);
         }
     }
@@ -84,7 +84,35 @@ class BalitaController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $balita = Balita::findOrFail($id);
+
+        $validator = Validator::make($request->all(), [
+            'nama' => ['required'],
+            'berat' => ['required', 'num eric'],
+            'tinggi' => ['required', 'numeric'],
+            'lkkepala' => ['required', 'numeric']
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json(
+                $validator->errors(),
+                Response::HTTP_UNPROCESSABLE_ENTITY
+            );
+        }
+
+        try {
+            $balita->update($request->all());
+            $response = [
+                'message' => 'Data Balita diupdate',
+                'data' => $balita
+            ];
+
+            return response()->json($response, Response::HTTP_OK);
+        } catch (QueryException $e) {
+            return response()->json([
+                'message' => "Update Data Gagal " . $e->errorInfo
+            ]);
+        }
     }
 
     /**
