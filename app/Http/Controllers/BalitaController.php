@@ -129,6 +129,20 @@ class BalitaController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $balita = Balita::findOrFail($id);
+
+        try {
+            $balita->delete();
+            $response = [
+                'message' => 'Data Dihapus',
+                'data' => $balita
+            ];
+
+            return response()->json($response, Response::HTTP_OK);
+        } catch (QueryException $e) {
+            return response()->json([
+                'message' => "Delete Data Gagal " . $e->errorInfo
+            ]);
+        }
     }
 }
