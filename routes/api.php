@@ -21,4 +21,5 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::get('/balita', [BalitaController::class, 'index']);
 Route::post('/balita', [BalitaController::class, 'store']);
+Route::get('/balita/{id}', [BalitaController::class, 'show']);
 Route::put('/balita/{id}', [BalitaController::class, 'update']);

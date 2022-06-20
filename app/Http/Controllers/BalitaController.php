@@ -72,7 +72,13 @@ class BalitaController extends Controller
      */
     public function show($id)
     {
-        //
+        $balita = Balita::findOrFail($id);
+        $response = [
+            'message' => 'Detail data balita',
+            'data' => $balita
+        ];
+
+        return response()->json($response, Response::HTTP_OK);
     }
 
     /**
