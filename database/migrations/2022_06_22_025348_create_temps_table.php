@@ -19,6 +19,7 @@ class CreateTempsTable extends Migration
             $table->double('berat');
             $table->double('tinggi');
             $table->double('lkkepala');
+            $table->double('jarak');
             $table->enum('gizi', ['1', '2', '3', '4']);
             $table->enum('berat', ['1', '2', '3', '4']);
             $table->enum('tinggi', ['1', '2', '3', '4']);
