@@ -15,9 +15,9 @@ class CreateTempsTable extends Migration
     {
         Schema::create('temps', function (Blueprint $table) {
             $table->id();
-            $table->double('umur');
-            $table->double('berat');
-            $table->double('tinggi');
+            $table->double('u');
+            $table->double('bb');
+            $table->double('tb');
             $table->double('lkkepala');
             $table->double('jarak');
             $table->enum('gizi', ['1', '2', '3', '4']);
