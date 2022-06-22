@@ -16,6 +16,7 @@ class CreateBalitasTable extends Migration
         Schema::create('balitas', function (Blueprint $table) {
             $table->id();
             $table->string('nama');
+            $table->double('umur');
             $table->double('berat');
             $table->double('tinggi');
             $table->double('lkkepala');
