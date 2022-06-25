@@ -2,13 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Balita;
 use App\Models\Knn;
-use App\Models\Temp;
+use App\Models\temp;
+use App\Models\Balita;
 use Illuminate\Database\QueryException;
 use Illuminate\Http\Exceptions\HttpResponseException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use App\Http\Controllers\mysql_query;
 use Symfony\Component\HttpFoundation\Response;
 
 class KnnController extends Controller
@@ -48,10 +49,15 @@ class KnnController extends Controller
     public function store(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'nama' => ['required'],
-            'berat' => ['required', 'num eric'],
+            'id_balita' => ['required', 'numeric'],
+            'u' => ['required', 'numeric'],
+            'bb' => ['required', 'numeric'],
+            'tb' => ['required', 'numeric'],
+            'lkkepala' => ['required', 'numeric'],
+            'bulan' => ['required', 'numeric'],
+            'gizi' => ['required', 'numeric'],
             'tinggi' => ['required', 'numeric'],
-            'lkkepala' => ['required', 'numeric']
+            'stunting' => ['required', 'numeric']
         ]);
 
         if ($validator->fails()) {
@@ -113,7 +119,40 @@ class KnnController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $Knn = Knn::findOrFail($id);
+
+        $validator = Validator::make($request->all(), [
+            'id_balita' => ['required', 'numeric'],
+            'u' => ['required', 'numeric'],
+            'bb' => ['required', 'numeric'],
+            'tb' => ['required', 'numeric'],
+            'lkkepala' => ['required', 'numeric'],
+            'bulan' => ['required', 'numeric'],
+            'gizi' => ['required', 'numeric'],
+            'tinggi' => ['required', 'numeric'],
+            'stunting' => ['required', 'numeric']
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json(
+                $validator->errors(),
+                Response::HTTP_UNPROCESSABLE_ENTITY
+            );
+        }
+
+        try {
+            $Knn->update($request->all());
+            $response = [
+                'message' => 'Data KNN diupdate',
+                'data' => $Knn
+            ];
+
+            return response()->json($response, Response::HTTP_OK);
+        } catch (QueryException $e) {
+            return response()->json([
+                'message' => "Update Data KNN Gagal " . $e->errorInfo
+            ]);
+        }
     }
 
     /**
@@ -138,6 +177,25 @@ class KnnController extends Controller
             return response()->json([
                 'message' => "Delete Data Gagal " . $e->errorInfo
             ]);
+        }
+    }
+
+    public function hitungdataset()
+    {
+        $dataset = temp::count();
+    }
+
+    public function knn()
+    {
+        $dataset = temp::count();
+        $k = 3;
+    }
+
+    public function euclidian()
+    {
+        $dataset = temp::count();
+        for ($i = 0; $i < $dataset; $i++) {
+            #
         }
     }
 }

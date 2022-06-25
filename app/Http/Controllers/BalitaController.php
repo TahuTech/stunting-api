@@ -36,10 +36,7 @@ class BalitaController extends Controller
     public function store(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'nama' => ['required'],
-            'berat' => ['required', 'num eric'],
-            'tinggi' => ['required', 'numeric'],
-            'lkkepala' => ['required', 'numeric']
+            'nama' => ['required']
         ]);
 
         if ($validator->fails()) {
@@ -93,10 +90,7 @@ class BalitaController extends Controller
         $balita = Balita::findOrFail($id);
 
         $validator = Validator::make($request->all(), [
-            'nama' => ['required'],
-            'berat' => ['required', 'num eric'],
-            'tinggi' => ['required', 'numeric'],
-            'lkkepala' => ['required', 'numeric']
+            'nama' => ['required']
         ]);
 
         if ($validator->fails()) {

@@ -15,16 +15,19 @@ class CreateKnnsTable extends Migration
     {
         Schema::create('knns', function (Blueprint $table) {
             $table->id();
-            $table->string('nama');
+            $table->integer('id_balita');
             $table->double('u');
             $table->double('bb');
             $table->double('tb');
             $table->double('lkkepala');
+            $table->enum('bulan', ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12']);
             $table->enum('gizi', ['1', '2', '3', '4']);
             $table->enum('berat', ['1', '2', '3', '4']);
             $table->enum('tinggi', ['1', '2', '3', '4']);
             $table->enum('stunting', ['1', '2', '3', '4']);
             $table->timestamps();
+
+            $table->foreign('id_balita')->references('id')->on('balitas');
         });
     }
 

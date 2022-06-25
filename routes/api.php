@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\BalitaController;
+use App\Http\Controllers\KnnController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -27,3 +28,10 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 // Route::delete('/balita/{id}', [BalitaController::class, 'destroy']);
 
 Route::resource('/balita', BalitaController::class)->except(['create', 'edit']);
+Route::resource('/balita', KnnController::class)->except(['create', 'edit']);
+
+
+Route::get('/knn', [KnnController::class, 'index']);
+
+Route::resource('/stunting', App\Http\Controllers\Api\KnnController::class);
+Route::apiResource('/hitung', App\Http\Controllers\Api\perhitungan::class,);

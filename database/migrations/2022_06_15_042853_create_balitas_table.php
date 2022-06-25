@@ -16,11 +16,6 @@ class CreateBalitasTable extends Migration
         Schema::create('balitas', function (Blueprint $table) {
             $table->id();
             $table->string('nama');
-            $table->double('umur');
-            $table->double('berat');
-            $table->double('tinggi');
-            $table->double('lkkepala');
-            $table->enum('bulan', ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12']);
             $table->timestamps();
         });
     }
