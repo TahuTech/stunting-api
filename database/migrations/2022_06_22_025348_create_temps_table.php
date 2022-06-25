@@ -24,7 +24,6 @@ class CreateTempsTable extends Migration
             $table->enum('berat', ['1', '2', '3', '4']);
             $table->enum('tinggi', ['1', '2', '3', '4']);
             $table->enum('stunting', ['1', '2', '3', '4']);
-            $table->timestamps();
         });
     }
 

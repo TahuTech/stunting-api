@@ -9,5 +9,5 @@ class temp extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['umur', 'berat', 'tinggi', 'lkkepala', 'jarak', 'gizi', 'berat', 'tinggi', 'stunting'];
+    protected $fillable = ['u', 'bb', 'tb', 'lkkepala', 'jarak', 'gizi', 'berat', 'tinggi', 'stunting'];
 }
