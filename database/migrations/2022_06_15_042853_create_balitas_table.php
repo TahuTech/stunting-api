@@ -14,7 +14,7 @@ class CreateBalitasTable extends Migration
     public function up()
     {
         Schema::create('balitas', function (Blueprint $table) {
-            $table->id();
+            $table->bigIncrements('id');
             $table->string('nama');
             $table->timestamps();
         });

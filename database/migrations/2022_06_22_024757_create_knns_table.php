@@ -14,8 +14,8 @@ class CreateKnnsTable extends Migration
     public function up()
     {
         Schema::create('knns', function (Blueprint $table) {
-            $table->id();
-            $table->integer('id_balita');
+            $table->bigIncrements('id');
+            $table->unsignedBigInteger('id_balita');
             $table->double('u');
             $table->double('bb');
             $table->double('tb');
