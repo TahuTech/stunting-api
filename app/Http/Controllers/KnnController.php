@@ -191,6 +191,11 @@ class KnnController extends Controller
         $k = 3;
     }
 
+    public function lastdata()
+    {
+        $knn = Knn::orderBy('created_at', 'desc')->first();
+    }
+
     public function euclidian()
     {
         $dataset = temp::count();
