@@ -15,11 +15,9 @@ class CreateSaransTable extends Migration
     {
         Schema::create('sarans', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('id_user');
-            $table->Text('saran');
+            $table->string('saran');
             $table->timestamps();
 
-            $table->foreign('id_user')->references('id')->on('users');
         });
     }
 

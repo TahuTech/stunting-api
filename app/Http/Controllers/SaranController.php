@@ -48,14 +48,14 @@ class SaranController extends Controller
         try {
             $saran = Saran::create($request->all());
             $response = [
-                'message' => 'Saran Berhasil Ditambahkan',
+                'message' => 'Data saran Berhasil Di Simpan',
                 'data' => $saran
             ];
 
             return response()->json($response, Response::HTTP_CREATED);
         } catch (QueryException $e) {
             return response()->json([
-                'message' => "Data Saran Gagal" . $e->errorInfo
+                'message' => "Data Gagal" . $e->errorInfo
             ]);
         }
     }

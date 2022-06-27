@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\KnnController;
+use App\Models\Knn;
+use App\Models\temp;
 use Illuminate\Http\Request;
 
 class perhitungan extends Controller
