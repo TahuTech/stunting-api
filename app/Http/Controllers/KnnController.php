@@ -21,7 +21,7 @@ class KnnController extends Controller
      */
     public function index()
     {
-        $Knn = Knn::orderBy('nama', 'ASC')->get();
+        $Knn = Knn::orderBy('id_balita', 'ASC')->get();
         $response = [
             'message' => 'Daftar Status Balita',
             'data' => $Knn
@@ -57,6 +57,7 @@ class KnnController extends Controller
             'bulan' => ['required', 'numeric'],
             'gizi' => ['required', 'numeric'],
             'tinggi' => ['required', 'numeric'],
+            'berat' => ['required', 'numeric'],
             'stunting' => ['required', 'numeric']
         ]);
 
@@ -130,6 +131,7 @@ class KnnController extends Controller
             'bulan' => ['required', 'numeric'],
             'gizi' => ['required', 'numeric'],
             'tinggi' => ['required', 'numeric'],
+            'berat' => ['required', 'numeric'],
             'stunting' => ['required', 'numeric']
         ]);
 
@@ -177,31 +179,6 @@ class KnnController extends Controller
             return response()->json([
                 'message' => "Delete Data Gagal " . $e->errorInfo
             ]);
-        }
-    }
-
-    public function hitungdataset()
-    {
-        $dataset = temp::count();
-    }
-
-    public function knn()
-    {
-        $dataset = temp::count();
-        $k = 3;
-    }
-
-    public function lastdata()
-    {
-        $knn = Knn::orderBy('created_at', 'desc')->first();
-        $u = [$knn => 'u'];
-    }
-
-    public function euclidian()
-    {
-        $dataset = temp::count();
-        for ($i = 0; $i < $dataset; $i++) {
-            #
         }
     }
 }
