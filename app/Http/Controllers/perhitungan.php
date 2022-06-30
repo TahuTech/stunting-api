@@ -22,8 +22,15 @@ class perhitungan extends Controller
 
     public function lastdata()
     {
-        $knn = Knn::orderBy('created_at', 'desc')->first();
-        $u = [$knn => 'u'];
+        // $knn = Knn::orderBy('created_at', 'desc')->first();
+        $idlast = Knn::count();
+        //$newdata = Knn::orderBy('created_at', 'desc')->first()->get();
+        $newdata = Knn::where('id', '=', $idlast)->get();
+        //$newdata = KnnController::show($idlast);
+        $u = $newdata->u;
+        $bb = $newdata->bb;
+        $tb = $newdata->tb;
+        $lkkepala = $newdata->lkkepala;
     }
 
     public function euclidian()

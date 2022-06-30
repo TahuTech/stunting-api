@@ -37,5 +37,4 @@ Route::resource('/knn', KnnController::class)->except(['create', 'edit']);
 
 Route::get('/knns', [KnnController::class, 'lastdata']);
 
-Route::resource('/stunting', App\Http\Controllers\Api\KnnController::class);
-Route::apiResource('/hitung', App\Http\Controllers\Api\perhitungan::class,);
+Route::apiResource('/aksi', App\Http\Controllers\aksiController::class);
