@@ -30,8 +30,13 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::resource('/balita', BalitaController::class)->except(['create', 'edit']);
 
+//saran api route
 Route::resource('/saran', SaranController::class)->except(['create', 'edit']);
 
+//knn api route
+Route::resource('/knn', KnnController::class)->except(['create', 'edit']);
+
+//dataset api route
 Route::resource('/knn', KnnController::class)->except(['create', 'edit']);
 
 
