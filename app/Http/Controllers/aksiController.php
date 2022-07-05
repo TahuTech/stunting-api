@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Balita;
+use App\Models\Dataset;
 use App\Models\Knn;
+use App\Models\temp;
 use Illuminate\Http\Request;
 
 class aksiController extends Controller
@@ -15,13 +17,29 @@ class aksiController extends Controller
      */
     public function index()
     {
+        //Ambil data last from database
+
         // $knn = Knn::orderBy('created_at', 'desc')->first();
         $newdata = Knn::orderBy('created_at', 'desc')->first();
         //$newdata = KnnController::show($idlast);
+
         $u = $newdata->u;
         $bb = $newdata->bb;
         $tb = $newdata->tb;
         $lkkepala = $newdata->lkkepala;
+
+        //ambil banyak dataset
+        $Cdataset = Dataset::count();
+        //sementara namanya temp
+        $Ctemp = temp::count();
+
+        function banyakbalita()
+        {
+            $mbalita = Balita::count();
+            echo  "banyak balitanya " . $mbalita;
+        }
+
+        banyakbalita();
 
         echo "u nya " . $u . "\n";
         echo "bb nya " . $bb . "\n";
@@ -32,7 +50,7 @@ class aksiController extends Controller
     public function banyakbalita()
     {
         $mbalita = Balita::count();
-        return $mbalita;
+        echo $mbalita;
     }
     /**
      * Show the form for creating a new resource.
