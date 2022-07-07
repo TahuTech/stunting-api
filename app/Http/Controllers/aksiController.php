@@ -54,10 +54,10 @@ class aksiController extends Controller
         $result =  DB::select('select * from dataset');
 
         foreach ($result as $row) {
-            array_push($datasetU, $row->u);
-            array_push($datasetbb, $row->bb);
-            array_push($datasettb, $row->tb);
-            array_push($datasetlk, $row->lkkepala);
+            array_push($datasetU, $row->du);
+            array_push($datasetbb, $row->dbb);
+            array_push($datasettb, $row->dtb);
+            array_push($datasetlk, $row->dlkkepala);
         }
 
         die;

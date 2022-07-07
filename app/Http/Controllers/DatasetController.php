@@ -19,7 +19,7 @@ class DatasetController extends Controller
     {
         $dataset = Dataset::orderBy('jarak', 'ASC')->get();
         $response = [
-            'message' => 'Dataset dari yang terkecil',
+            'message' => 'Dataset dari jarak yang terkecil',
             'data' => $dataset
         ];
 
@@ -35,15 +35,15 @@ class DatasetController extends Controller
     public function store(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'u' => ['required', 'numeric'],
-            'bb' => ['required', 'numeric'],
-            'tb' => ['required', 'numeric'],
-            'lkkepala' => ['required', 'numeric'],
+            'du' => ['required', 'numeric'],
+            'dbb' => ['required', 'numeric'],
+            'dtb' => ['required', 'numeric'],
+            'dlkkepala' => ['required', 'numeric'],
             'jarak' => ['required', 'numeric'],
-            'gizi' => ['required', 'in:1,2,3,4'],
-            'berat' => ['required', 'in:1,2,3,4'],
-            'tinggi' => ['required', 'in:1,2,3,4'],
-            'stunting' => ['required', 'in:1,2,3,4']
+            'dgizi' => ['required', 'numeric'],
+            'dtinggi' => ['required', 'numeric'],
+            'dberat' => ['required', 'numeric'],
+            'dstunting' => ['required', 'numeric']
         ]);
 
         if ($validator->fails()) {
@@ -56,14 +56,14 @@ class DatasetController extends Controller
         try {
             $dataset = Dataset::create($request->all());
             $response = [
-                'message' => 'Dataset Berhasil Di Simpan',
+                'message' => 'Dataset Ditambahkan',
                 'data' => $dataset
             ];
 
             return response()->json($response, Response::HTTP_CREATED);
         } catch (QueryException $e) {
             return response()->json([
-                'message' => "Data Gagal" . $e->errorInfo
+                'message' => "Dataset Gagal" . $e->errorInfo
             ]);
         }
     }
@@ -78,7 +78,7 @@ class DatasetController extends Controller
     {
         $dataset = Dataset::findOrFail($id);
         $response = [
-            'message' => 'Detail Dataset',
+            'message' => 'Detail data dataset$dataset',
             'data' => $dataset
         ];
 
@@ -97,15 +97,15 @@ class DatasetController extends Controller
         $dataset = Dataset::findOrFail($id);
 
         $validator = Validator::make($request->all(), [
-            'u' => ['required', 'numeric'],
-            'bb' => ['required', 'numeric'],
-            'tb' => ['required', 'numeric'],
-            'lkkepala' => ['required|numeric'],
+            'du' => ['required', 'numeric'],
+            'dbb' => ['required', 'numeric'],
+            'dtb' => ['required', 'numeric'],
+            'dlkkepala' => ['required', 'numeric'],
             'jarak' => ['required', 'numeric'],
-            'gizi' => ['required', 'numeric'],
-            'berat' => ['required', 'numeric'],
-            'tinggi' => ['required', 'numeric'],
-            'stunting' => ['required', 'numeric']
+            'dgizi' => ['required', 'numeric'],
+            'dtinggi' => ['required', 'numeric'],
+            'dberat' => ['required', 'numeric'],
+            'dstunting' => ['required', 'numeric']
         ]);
 
         if ($validator->fails()) {
@@ -118,17 +118,16 @@ class DatasetController extends Controller
         try {
             $dataset->update($request->all());
             $response = [
-                'message' => 'Dataset diupdate',
+                'message' => 'Dataset Diupdate',
                 'data' => $dataset
             ];
 
-            return response()->json($response, Response::HTTP_OK);
+            return response()->json($response, Response::HTTP_CREATED);
         } catch (QueryException $e) {
             return response()->json([
-                'message' => "Update Dataset Gagal " . $e->errorInfo
+                'message' => "Update Dataset Gagal" . $e->errorInfo
             ]);
         }
-
     }
 
     /**
@@ -144,14 +143,14 @@ class DatasetController extends Controller
         try {
             $dataset->delete();
             $response = [
-                'message' => 'Dataset Dihapus',
+                'message' => 'Dataset Diupdate',
                 'data' => $dataset
             ];
 
             return response()->json($response, Response::HTTP_OK);
         } catch (QueryException $e) {
             return response()->json([
-                'message' => "Delete Dataset Gagal " . $e->errorInfo
+                'message' => "Delete Dataset Gagal" . $e->errorInfo
             ]);
         }
     }

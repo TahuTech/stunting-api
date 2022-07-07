@@ -15,15 +15,15 @@ class CreateDatasetsTable extends Migration
     {
         Schema::create('datasets', function (Blueprint $table) {
             $table->id();
-            $table->double('u');
-            $table->double('bb');
-            $table->double('tb');
-            $table->double('lkkepala');
+            $table->double('du');
+            $table->double('dbb');
+            $table->double('dtb');
+            $table->double('dlkkepala');
             $table->double('jarak');
-            $table->enum('gizi', ['1', '2', '3', '4']);
-            $table->enum('berat', ['1', '2', '3', '4']);
-            $table->enum('tinggi', ['1', '2', '3', '4']);
-            $table->enum('stunting', ['1', '2', '3', '4']);
+            $table->enum('dgizi', ['1', '2', '3', '4']);
+            $table->enum('dberat', ['1', '2', '3', '4']);
+            $table->enum('dtinggi', ['1', '2', '3', '4']);
+            $table->enum('dstunting', ['1', '2', '3', '4']);
         });
     }
 
