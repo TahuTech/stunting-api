@@ -39,11 +39,11 @@ class DatasetController extends Controller
             'bb' => ['required', 'numeric'],
             'tb' => ['required', 'numeric'],
             'lkkepala' => ['required', 'numeric'],
-            'jarak' => [''],
-            'gizi' => ['required', 'numeric'],
-            'berat' => ['required', 'numeric'],
-            'tinggi' => ['required', 'numeric'],
-            'stunting' => ['required', 'numeric']
+            'jarak' => ['required', 'numeric'],
+            'gizi' => ['required', 'in:1,2,3,4'],
+            'berat' => ['required', 'in:1,2,3,4'],
+            'tinggi' => ['required', 'in:1,2,3,4'],
+            'stunting' => ['required', 'in:1,2,3,4']
         ]);
 
         if ($validator->fails()) {
@@ -100,8 +100,8 @@ class DatasetController extends Controller
             'u' => ['required', 'numeric'],
             'bb' => ['required', 'numeric'],
             'tb' => ['required', 'numeric'],
-            'lkkepala' => ['required', 'numeric'],
-            'jarak' => [''],
+            'lkkepala' => ['required|numeric'],
+            'jarak' => ['required', 'numeric'],
             'gizi' => ['required', 'numeric'],
             'berat' => ['required', 'numeric'],
             'tinggi' => ['required', 'numeric'],

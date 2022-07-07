@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\BalitaController;
+use App\Http\Controllers\DatasetController;
 use App\Http\Controllers\KnnController;
 use App\Http\Controllers\SaranController;
 use Illuminate\Http\Request;
@@ -37,7 +38,7 @@ Route::resource('/saran', SaranController::class)->except(['create', 'edit']);
 Route::resource('/knn', KnnController::class)->except(['create', 'edit']);
 
 //dataset api route
-Route::resource('/knn', KnnController::class)->except(['create', 'edit']);
+Route::resource('/dataset', DatasetController::class)->except(['create', 'edit']);
 
 
 Route::get('/knns', [KnnController::class, 'lastdata']);

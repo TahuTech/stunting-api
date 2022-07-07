@@ -21,7 +21,7 @@ class aksiController extends Controller
     {
 
         $result = DB::select('select * from balitas');
-    //    dump($result);
+        //    dump($result);
         //return response()->json(['data' => $result]);
         $test = [];
 
@@ -44,16 +44,14 @@ class aksiController extends Controller
 
         //hitung banyak dataset
         $Cdataset = Dataset::count();
-        //sementara namanya temp
-        $Ctemp = temp::count();
 
-        //ambil database dari dataset/temp
-        $datasetU =[];
-        $datasetbb =[];
+        //ambil database dari dataset
+        $datasetU = [];
+        $datasetbb = [];
         $datasettb = [];
         $datasetlk = [];
 
-        $result =  DB::select('select * from temp');
+        $result =  DB::select('select * from dataset');
 
         foreach ($result as $row) {
             array_push($datasetU, $row->u);
@@ -61,17 +59,41 @@ class aksiController extends Controller
             array_push($datasettb, $row->tb);
             array_push($datasetlk, $row->lkkepala);
         }
+
         die;
 
-        function euclidian(){
-            (datasetu-u) + (datasetbb-bb)
-            sqrt(dataset-u)
+        //perhitungan euclidian
+        for ($i = 0; $i < $Cdataset; $i++) {
+            $x1 = pow($datasetU[$i] - $u);
+            $x2 = pow($datasetbb[$i] - $bb);
+            $x3 = pow($datasettb[$i] - $tb);
+            $x4 = pow($datasetlk[$i] - $lkkepala);
+
+            //akar kuadrad
+            $hasil = sqrt($x1 + $x2 + $x3 + $x4);
+
+            //update jarak dalam database dataset
+            DB::table('dataset')
+                ->where('id', $i)
+                ->update(
+                    ['u' => $datasetU],
+                    ['bb' => $datasetbb],
+                    ['tb' => $datasettb],
+                    ['lkkepala' => $datasetlk],
+                    ['jarak' => $hasil]
+                );
         }
 
-        $s1 = $u-$datasetU[0];
+        function euclidian()
+        {
+            // (datasetu-u) + (datasetbb-bb)
+            // sqrt(dataset-u)
+        }
+
+        $s1 = $u - $datasetU[0];
         $s2 = $bb - $datasetbb[0];
         sqrt(
-            pow($s1,2)
+            pow($s1, 2)
         );
 
         function banyakbalita()
@@ -88,15 +110,6 @@ class aksiController extends Controller
         echo "lkkepala nya " . $lkkepala;
     }
 
-    public function banyakbalita()
-    {
-        $mbalita = Balita::count();
-        echo $mbalita;
-    }
-
-    public function euclidian(){
-        pow($x1+$x2);
-    }
     /**
      * Show the form for creating a new resource.
      *
