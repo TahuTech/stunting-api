@@ -7,6 +7,8 @@ use App\Models\Dataset;
 use App\Models\Knn;
 use App\Models\temp;
 use Illuminate\Http\Request;
+use DB;
+use Illuminate\Support\Facades\DB as FacadesDB;
 
 class aksiController extends Controller
 {
@@ -17,6 +19,18 @@ class aksiController extends Controller
      */
     public function index()
     {
+
+        $result = DB::select('select * from balitas');
+    //    dump($result);
+        //return response()->json(['data' => $result]);
+        $test = [];
+
+        foreach ($result as $row) {
+            array_push($test, $row->id);
+        }
+        dump($test);
+        die;
+
         //Ambil data last from database
 
         // $knn = Knn::orderBy('created_at', 'desc')->first();
@@ -28,10 +42,37 @@ class aksiController extends Controller
         $tb = $newdata->tb;
         $lkkepala = $newdata->lkkepala;
 
-        //ambil banyak dataset
+        //hitung banyak dataset
         $Cdataset = Dataset::count();
         //sementara namanya temp
         $Ctemp = temp::count();
+
+        //ambil database dari dataset/temp
+        $datasetU =[];
+        $datasetbb =[];
+        $datasettb = [];
+        $datasetlk = [];
+
+        $result =  DB::select('select * from temp');
+
+        foreach ($result as $row) {
+            array_push($datasetU, $row->u);
+            array_push($datasetbb, $row->bb);
+            array_push($datasettb, $row->tb);
+            array_push($datasetlk, $row->lkkepala);
+        }
+        die;
+
+        function euclidian(){
+            (datasetu-u) + (datasetbb-bb)
+            sqrt(dataset-u)
+        }
+
+        $s1 = $u-$datasetU[0];
+        $s2 = $bb - $datasetbb[0];
+        sqrt(
+            pow($s1,2)
+        );
 
         function banyakbalita()
         {
@@ -51,6 +92,10 @@ class aksiController extends Controller
     {
         $mbalita = Balita::count();
         echo $mbalita;
+    }
+
+    public function euclidian(){
+        pow($x1+$x2);
     }
     /**
      * Show the form for creating a new resource.
