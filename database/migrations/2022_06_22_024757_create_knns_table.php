@@ -21,10 +21,10 @@ class CreateKnnsTable extends Migration
             $table->double('tb');
             $table->double('lkkepala');
             $table->enum('bulan', ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12']);
-            $table->enum('gizi', ['1', '2', '3', '4']);
-            $table->enum('berat', ['1', '2', '3', '4']);
-            $table->enum('tinggi', ['1', '2', '3', '4']);
-            $table->enum('stunting', ['1', '2', '3', '4']);
+            $table->enum('gizi', ['0','1', '2', '3', '4'])->nullable();
+            $table->enum('berat', ['0','1', '2', '3', '4'])->nullable();
+            $table->enum('tinggi', ['0','1', '2', '3', '4'])->nullable();
+            $table->enum('stunting', ['0','1', '2', '3', '4'])->nullable();
             $table->timestamps();
 
             $table->foreign('id_balita')->references('id')->on('balitas');

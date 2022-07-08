@@ -54,11 +54,7 @@ class KnnController extends Controller
             'bb' => ['required', 'numeric'],
             'tb' => ['required', 'numeric'],
             'lkkepala' => ['required', 'numeric'],
-            'bulan' => ['required', 'numeric'],
-            'gizi' => ['required', 'numeric'],
-            'tinggi' => ['required', 'numeric'],
-            'berat' => ['required', 'numeric'],
-            'stunting' => ['required', 'numeric']
+            'bulan' => ['required', 'in:1,2,3,4,5,6,7,8,9,10,11,12'],
         ]);
 
         if ($validator->fails()) {

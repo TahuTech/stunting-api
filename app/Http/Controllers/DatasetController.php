@@ -39,7 +39,6 @@ class DatasetController extends Controller
             'dbb' => ['required', 'numeric'],
             'dtb' => ['required', 'numeric'],
             'dlkkepala' => ['required', 'numeric'],
-            'jarak' => ['required', 'numeric'],
             'dgizi' => ['required', 'numeric'],
             'dtinggi' => ['required', 'numeric'],
             'dberat' => ['required', 'numeric'],

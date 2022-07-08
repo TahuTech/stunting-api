@@ -3,20 +3,20 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\KnnController;
+use App\Models\Dataset;
 use App\Models\Knn;
-use App\Models\temp;
 use Illuminate\Http\Request;
 
 class perhitungan extends Controller
 {
     public function hitungdataset()
     {
-        $dataset = temp::count();
+        $dataset = Dataset::count();
     }
 
     public function knn()
     {
-        $dataset = temp::count();
+        $dataset = Dataset::count();
         $k = 3;
     }
 
@@ -35,7 +35,7 @@ class perhitungan extends Controller
 
     public function euclidian()
     {
-        $dataset = temp::count();
+        $dataset = Dataset::count();
         for ($i = 0; $i < $dataset; $i++) {
             #
         }
