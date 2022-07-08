@@ -32,10 +32,7 @@ class aksiController extends Controller
         die;
 
         //Ambil data last from database
-
-        // $knn = Knn::orderBy('created_at', 'desc')->first();
         $newdata = Knn::orderBy('created_at', 'desc')->first();
-        //$newdata = KnnController::show($idlast);
 
         $u = $newdata->u;
         $bb = $newdata->bb;
@@ -50,6 +47,7 @@ class aksiController extends Controller
         $datasetbb = [];
         $datasettb = [];
         $datasetlk = [];
+
 
         $result =  DB::select('select * from dataset');
 
