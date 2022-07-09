@@ -74,39 +74,52 @@ class aksiController extends Controller
             DB::table('dataset')
                 ->where('id', $i)
                 ->update(
-                    ['u' => $datasetU],
-                    ['bb' => $datasetbb],
-                    ['tb' => $datasettb],
-                    ['lkkepala' => $datasetlk],
                     ['jarak' => $hasil]
                 );
         }
 
-        function euclidian()
-        {
-            // (datasetu-u) + (datasetbb-bb)
-            // sqrt(dataset-u)
+        //nilai k yang sudah ditentukan
+        $k = 3;
+        //urutkan data dari yang terkecil jaraknya
+        $uji =  DB::select('select * from dataset order by jarak');
+
+
+        //variabel tampung yang menjadi acuan
+        $dgiz = [];
+        $dbb = [];
+        $dtb = [];
+        $dstun = [];
+
+        //masukkan data ke dalam array
+        for ($i = 0; $i < $k; $i++) {
+            array_push($dgiz, $uji->dgizi);
+            array_push($dbb, $uji->dberat);
+            array_push($dtb, $uji->dtinggi);
+            array_push($dstun, $uji->dstunting);
         }
 
-        $s1 = $u - $datasetU[0];
-        $s2 = $bb - $datasetbb[0];
-        sqrt(
-            pow($s1, 2)
-        );
+        //penentuan klasifikasinya
+        $giz1 = 0;
+        $giz2 = 0;
+        $giz3 = 0;
+        $giz4 = 0;
 
-        function banyakbalita()
-        {
-            $mbalita = Balita::count();
-            echo  "banyak balitanya " . $mbalita;
+        for ($i = 0; $i < $k; $i++) {
+            if ($dgiz[$i] == 1) {
+                $giz1++;
+            } else if ($dgiz[$i] == 2) {
+                $giz2++;
+            } else if ($dgiz[$i] == 3) {
+                $giz3++;
+            } else if ($dgiz[$i] == 4) {
+                $giz4++;
+            }
         }
-
-        banyakbalita();
-
-        echo "u nya " . $u . "\n";
-        echo "bb nya " . $bb . "\n";
-        echo "tb nya " . $tb . "\n";
-        echo "lkkepala nya " . $lkkepala;
     }
+
+
+
+
 
     /**
      * Show the form for creating a new resource.
