@@ -15,9 +15,8 @@ class CreateSaransTable extends Migration
     {
         Schema::create('sarans', function (Blueprint $table) {
             $table->id();
-            $table->string('saran');
+            $table->string('isi');
             $table->timestamps();
-
         });
     }
 
