@@ -9,5 +9,5 @@ class Saran extends Model
 {
     use HasFactory;
     protected  $table = 'sarans';
-    protected $fillable = ['saran'];
+    protected $fillable = ['isi'];
 }
