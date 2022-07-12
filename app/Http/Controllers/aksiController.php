@@ -99,22 +99,7 @@ class aksiController extends Controller
         }
 
         //penentuan klasifikasinya
-        $giz1 = 0;
-        $giz2 = 0;
-        $giz3 = 0;
-        $giz4 = 0;
 
-        for ($i = 0; $i < $k; $i++) {
-            if ($dgiz[$i] == 1) {
-                $giz1++;
-            } else if ($dgiz[$i] == 2) {
-                $giz2++;
-            } else if ($dgiz[$i] == 3) {
-                $giz3++;
-            } else if ($dgiz[$i] == 4) {
-                $giz4++;
-            }
-        }
     }
 
 
