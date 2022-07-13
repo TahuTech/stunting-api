@@ -20,27 +20,40 @@ class aksiController extends Controller
     public function index()
     {
 
-        $result = DB::select('select * from balitas');
         //    dump($result);
         //return response()->json(['data' => $result]);
-        $test = [];
 
-        foreach ($result as $row) {
-            array_push($test, $row->id);
-        }
-        dump($test);
-        die;
+        // $result = DB::select('select * from balitas');
+        // $test = [];
+
+        // foreach ($result as $row) {
+        //     array_push($test, $row->id);
+        // }
+        // dump($test);
+        // die;
 
         //Ambil data last from database
-        $newdata = Knn::orderBy('created_at', 'desc')->first();
+        $newdata = Knn::orderBy('id', 'desc')->first();
 
         $u = $newdata->u;
         $bb = $newdata->bb;
         $tb = $newdata->tb;
         $lkkepala = $newdata->lkkepala;
 
+        //data last berhasil
+        // dump($u);
+        // dump($bb);
+        // dump($tb);
+        // dump($lkkepala);
+        // die;
+
         //hitung banyak dataset
         $Cdataset = Dataset::count();
+
+        //banyak dataset berhasil
+        // dump($Cdataset);
+        // die;
+
 
         //ambil database dari dataset
         $datasetU = [];
@@ -49,7 +62,7 @@ class aksiController extends Controller
         $datasetlk = [];
 
 
-        $result =  DB::select('select * from dataset');
+        $result =  DB::select('select * from datasets');
 
         foreach ($result as $row) {
             array_push($datasetU, $row->du);
@@ -58,26 +71,33 @@ class aksiController extends Controller
             array_push($datasetlk, $row->dlkkepala);
         }
 
-        die;
+        //select dataset berhasil
+        // dump($datasetU);
+        // dump($datasetbb);
+        // dump($datasettb);
+        // dump($datasetlk);
+        // die;
+
 
         //perhitungan euclidian
         for ($i = 0; $i < $Cdataset; $i++) {
-            $x1 = pow($datasetU[$i] - $u);
-            $x2 = pow($datasetbb[$i] - $bb);
-            $x3 = pow($datasettb[$i] - $tb);
-            $x4 = pow($datasetlk[$i] - $lkkepala);
+            $x1 = pow(($datasetU[$i] - $u), 2);
+            $x2 = pow(($datasetbb[$i] - $bb), 2);
+            $x3 = pow(($datasettb[$i] - $tb), 2);
+            $x4 = pow(($datasetlk[$i] - $lkkepala), 2);
 
             //akar kuadrad
             $hasil = sqrt($x1 + $x2 + $x3 + $x4);
 
             //update jarak dalam database dataset
-            DB::table('dataset')
-                ->where('id', $i)
+            DB::table('datasets')
+                ->where('id', 1 + $i)
                 ->update(
                     ['jarak' => $hasil]
                 );
         }
 
+        die;
         //nilai k yang sudah ditentukan
         $k = 3;
         //urutkan data dari yang terkecil jaraknya
