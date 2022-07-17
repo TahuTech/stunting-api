@@ -35,6 +35,7 @@ class aksiController extends Controller
         //Ambil data last from database
         $newdata = Knn::orderBy('id', 'desc')->first();
 
+        $iddata = $newdata->id;
         $u = $newdata->u;
         $bb = $newdata->bb;
         $tb = $newdata->tb;
@@ -97,12 +98,17 @@ class aksiController extends Controller
                 );
         }
 
-        die;
-        //nilai k yang sudah ditentukan
-        $k = 3;
-        //urutkan data dari yang terkecil jaraknya
-        $uji =  DB::select('select * from dataset order by jarak');
 
+        //nilai k yang sudah ditentukan
+        $k = 5;
+        //urutkan data dari yang terkecil jaraknya
+        $uji =  DB::select('select * from datasets order by jarak limit ' . $k);
+
+        // $ujidata = DB::table('datasets')->orderBy('jarak', 'asc')->limit($k)->get();
+        // $ujidata =  DB::table('datasets')->skip(10)->take(3)->get();
+
+        // dump($uji);
+        // die;
 
         //variabel tampung yang menjadi acuan
         $dgiz = [];
@@ -110,16 +116,48 @@ class aksiController extends Controller
         $dtb = [];
         $dstun = [];
 
-        //masukkan data ke dalam array
-        for ($i = 0; $i < $k; $i++) {
-            array_push($dgiz, $uji->dgizi);
-            array_push($dbb, $uji->dberat);
-            array_push($dtb, $uji->dtinggi);
-            array_push($dstun, $uji->dstunting);
+        foreach ($uji as $row) {
+            array_push($dgiz, $row->dgizi);
         }
 
-        //penentuan klasifikasinya
+        dump($dgiz);
 
+        $distinctdata = array_unique($dgiz);
+        dump($distinctdata);
+
+
+        $var = [];
+        for ($d = 0; $d < count($distinctdata); $d++) {
+            $var[$d] = 0;
+
+            for ($i = 0; $i < count($dgiz); $i++) {
+                if ($distinctdata[$d] == $dgiz[$i]) {
+                    $var[$d]++;
+                }
+            }
+        }
+
+        dump($var[0]);
+        dump($var[1]);
+
+
+        if ($var[0] > $var[1]) {
+            $knngiz = $distinctdata[0];
+        } else {
+            $knngiz = $distinctdata[1];
+        }
+
+        dump($knngiz);
+
+        die;
+
+        //last data
+
+        DB::table('knns')
+            ->where('id', $iddata)
+            ->update(
+                ['gizi' => $hasil]
+            );
     }
 
 
