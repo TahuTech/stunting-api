@@ -100,7 +100,7 @@ class aksiController extends Controller
 
 
         //nilai k yang sudah ditentukan
-        $k = 5;
+        $k = 3;
         //urutkan data dari yang terkecil jaraknya
         $uji =  DB::select('select * from datasets order by jarak limit ' . $k);
 
