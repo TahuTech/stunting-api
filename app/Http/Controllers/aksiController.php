@@ -100,7 +100,7 @@ class aksiController extends Controller
 
 
         //nilai k yang sudah ditentukan
-        $k = 3;
+        $k = 5;
         //urutkan data dari yang terkecil jaraknya
         $uji =  DB::select('select * from datasets order by jarak limit ' . $k);
 
@@ -125,6 +125,35 @@ class aksiController extends Controller
         $distinctdata = array_unique($dgiz);
         dump($distinctdata);
 
+        $arraytest = [1, 3, 3, 2, 1, 3, 4, 1, 1, 2, 2, 2, 2];
+        $testt = array_count_values($arraytest);
+        // $testt = array_count_values($dgiz);
+        dump($testt);
+        dump($testt[1]);
+        dump($testt[2]);
+        dump($testt[3]);
+        dump($testt[4]);
+
+        $panjang = count($testt);
+        echo 'banyak data yang ada yakni';
+        dump($panjang);
+
+        $gizstat = [0, 0, 0, 0, 0,];
+
+        for ($i = 1; $i <= $panjang; $i++) {
+            $gizstat[$i] = $testt[$i];
+        }
+
+        dump($gizstat);
+
+        //menentukan nilai terbesar dalam array
+        echo "<br>"; // using array_search()
+        echo "nilai yang paling banyak muncul yakni :";
+        $key = array_search(max($testt), $testt);
+        echo $key;
+
+
+        die;
 
         $var = [];
         for ($d = 0; $d < count($distinctdata); $d++) {
