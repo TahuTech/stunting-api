@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\aksiController;
 use App\Http\Controllers\BalitaController;
 use App\Http\Controllers\DatasetController;
 use App\Http\Controllers\KnnController;
@@ -43,4 +44,8 @@ Route::resource('/dataset', DatasetController::class)->except(['create', 'edit']
 
 Route::get('/knns', [KnnController::class, 'lastdata']);
 
+//default route from api
 Route::apiResource('/aksi', App\Http\Controllers\aksiController::class);
+
+//custom route for gizi
+// Route::get('/aksi/gizi', [aksiController::class, 'gizi']);
