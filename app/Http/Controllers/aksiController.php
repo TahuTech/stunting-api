@@ -51,11 +51,6 @@ class aksiController extends Controller
         //hitung banyak dataset
         $Cdataset = Dataset::count();
 
-        //banyak dataset berhasil
-        // dump($Cdataset);
-        // die;
-
-
         //ambil database dari dataset
         $datasetU = [];
         $datasetbb = [];
@@ -98,19 +93,15 @@ class aksiController extends Controller
                 );
         }
 
-
-        //nilai k yang sudah ditentukan
+        //nilai k dari metode knn
         $k = 5;
-        //urutkan data dari yang terkecil jaraknya
+        //urutkan data dari yang terdekat jaraknya
         $uji =  DB::select('select * from datasets order by jarak limit ' . $k);
-
-        // $ujidata = DB::table('datasets')->orderBy('jarak', 'asc')->limit($k)->get();
-        // $ujidata =  DB::table('datasets')->skip(10)->take(3)->get();
 
         // dump($uji);
         // die;
 
-        //variabel tampung yang menjadi acuan
+        //variabel tampung yang menjadi acuan dari dataset
         $dgiz = [];
         $dbb = [];
         $dtb = [];
@@ -122,61 +113,21 @@ class aksiController extends Controller
 
         dump($dgiz);
 
-        $distinctdata = array_unique($dgiz);
-        dump($distinctdata);
-
-        $arraytest = [1, 3, 3, 2, 1, 3, 4, 1, 1, 2, 2, 2, 2];
-        $testt = array_count_values($arraytest);
+        // $arraytest = [1, 3, 3, 2, 1, 3, 4, 1, 1, 2, 2, 2, 2];
+        $vgiz = array_count_values($dgiz);
         // $testt = array_count_values($dgiz);
-        dump($testt);
-        dump($testt[1]);
-        dump($testt[2]);
-        dump($testt[3]);
-        dump($testt[4]);
+        dump($vgiz);
 
-        $panjang = count($testt);
-        echo 'banyak data yang ada yakni';
+        $panjang = count($vgiz);
+        echo 'banyak jenis data yang ada yakni';
         dump($panjang);
-
-        $gizstat = [0, 0, 0, 0, 0,];
-
-        for ($i = 1; $i <= $panjang; $i++) {
-            $gizstat[$i] = $testt[$i];
-        }
-
-        dump($gizstat);
 
         //menentukan nilai terbesar dalam array
         echo "<br>"; // using array_search()
         echo "nilai yang paling banyak muncul yakni :";
-        $key = array_search(max($testt), $testt);
-        echo $key;
+        $rgiz = array_search(max($vgiz), $vgiz);
+        echo $rgiz;
 
-
-        die;
-
-        $var = [];
-        for ($d = 0; $d < count($distinctdata); $d++) {
-            $var[$d] = 0;
-
-            for ($i = 0; $i < count($dgiz); $i++) {
-                if ($distinctdata[$d] == $dgiz[$i]) {
-                    $var[$d]++;
-                }
-            }
-        }
-
-        dump($var[0]);
-        dump($var[1]);
-
-
-        if ($var[0] > $var[1]) {
-            $knngiz = $distinctdata[0];
-        } else {
-            $knngiz = $distinctdata[1];
-        }
-
-        dump($knngiz);
 
         die;
 
@@ -185,7 +136,7 @@ class aksiController extends Controller
         DB::table('knns')
             ->where('id', $iddata)
             ->update(
-                ['gizi' => $hasil]
+                ['gizi' => $rgiz]
             );
     }
 
