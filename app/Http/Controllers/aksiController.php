@@ -19,19 +19,6 @@ class aksiController extends Controller
      */
     public function index()
     {
-
-        //    dump($result);
-        //return response()->json(['data' => $result]);
-
-        // $result = DB::select('select * from balitas');
-        // $test = [];
-
-        // foreach ($result as $row) {
-        //     array_push($test, $row->id);
-        // }
-        // dump($test);
-        // die;
-
         //Ambil data last from database
         $newdata = Knn::orderBy('id', 'desc')->first();
 
