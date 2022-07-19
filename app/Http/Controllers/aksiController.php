@@ -18,7 +18,7 @@ class aksiController extends Controller
      */
     public function index()
     {
-        //Ambil data last from database
+        //Ambil data last from knn database
         $newdata = Knn::orderBy('id', 'desc')->first();
 
         $iddata = $newdata->id;
@@ -59,6 +59,7 @@ class aksiController extends Controller
         // dump($datasetlk);
         // die;
 
+        ////Perhitungan Gizi////
         //perhitungan euclidian status gizi (BB/U)
         for ($i = 0; $i < $Cdataset; $i++) {
             $x1 = pow(($datasetU[$i] - $u), 2);
@@ -75,19 +76,16 @@ class aksiController extends Controller
                 );
         }
 
-        //nilai k dari metode knn
+        //nilai k metode knn
         $k = 5;
         //urutkan data dari yang terdekat jaraknya
         $ujigiz =  DB::select('select * from datasets order by jarak limit ' . $k);
 
-        // dump($uji);
+        // dump($ujigiz);
         // die;
 
-        //variabel tampung yang menjadi acuan dari dataset
+        //variabel Gizi tampung yang menjadi acuan dari dataset
         $dgiz = [];
-        $dbb = [];
-        $dtb = [];
-        $dstun = [];
 
         foreach ($ujigiz as $row) {
             array_push($dgiz, $row->dgizi);
@@ -96,23 +94,17 @@ class aksiController extends Controller
         die;
         dump($dgiz);
 
-        // $arraytest = [1, 3, 3, 2, 1, 3, 4, 1, 1, 2, 2, 2, 2];
+        //menghitung banyak data yang sama
         $vgiz = array_count_values($dgiz);
-        // $testt = array_count_values($dgiz);
         dump($vgiz);
 
-        $panjang = count($vgiz);
-        echo 'banyak jenis data yang ada yakni';
-        dump($panjang);
-
-        //menentukan nilai terbesar dalam array
-        echo "<br>"; // using array_search()
-        echo "nilai yang paling banyak muncul yakni :";
-        //hasil dari knn status gizi
+        //menentukan hasil nilai indeks terbesar dalam array
         $rgiz = array_search(max($vgiz), $vgiz);
 
         dump($rgiz);
 
+
+        ////Perhitungan Berat////
         //perhitungan euclidian status berat (BB/TB)
         for ($i = 0; $i < $Cdataset; $i++) {
             $x3 = pow(($datasetbb[$i] - $bb), 2);
@@ -129,18 +121,14 @@ class aksiController extends Controller
                 );
         }
 
-        //nilai k dari metode knn
-        $k = 5;
         //urutkan data dari yang terdekat jaraknya
         $ujibb =  DB::select('select * from datasets order by jarak limit ' . $k);
 
-        // dump($uji);
+        // dump($ujibb);
         // die;
 
-        //variabel tampung yang menjadi acuan dari dataset
+        //variabel tampung bb yang menjadi acuan dari dataset
         $dbb = [];
-        $dtb = [];
-        $dstun = [];
 
         foreach ($ujibb as $row) {
             array_push($dbb, $row->dbb);
@@ -149,28 +137,15 @@ class aksiController extends Controller
         die;
         dump($dbb);
 
+        //menghitung banyak data yang sama dalam bb
         $vbb = array_count_values($dbb);
-        // $testt = array_count_values($dgiz);
         dump($vbb);
 
-        $panjang = count($vbb);
-        echo 'banyak jenis data yang ada yakni';
-        dump($panjang);
-
-        //menentukan nilai terbesar dalam array
-        echo "<br>"; // using array_search()
-        echo "nilai yang paling banyak muncul yakni :";
-        //hasil dari knn status gizi
+        //menentukan hasil nilai indeks terbesar dalam array
         $rbb = array_search(max($vbb), $vbb);
 
-        //update data di table knn
 
-        DB::table('knns')
-            ->where('id', $iddata)
-            ->update(
-                ['berat' => $rbb]
-            );
-
+        ////Perhitungan tinggi////
         //perhitungan euclidian status tinggi (tb/u)
         for ($i = 0; $i < $Cdataset; $i++) {
             $x5 = pow(($datasettb[$i] - $tb), 2);
@@ -187,17 +162,14 @@ class aksiController extends Controller
                 );
         }
 
-        //nilai k dari metode knn
-        $k = 5;
         //urutkan data dari yang terdekat jaraknya
         $ujitb =  DB::select('select * from datasets order by jarak limit ' . $k);
 
-        // dump($uji);
+        // dump($ujitb);
         // die;
 
         //variabel tampung yang menjadi acuan dari dataset
         $dtb = [];
-        $dstun = [];
 
         foreach ($ujitb as $row) {
             array_push($dtb, $row->dtb);
@@ -206,18 +178,11 @@ class aksiController extends Controller
         die;
         dump($dtb);
 
+        //menghitung banyak data yang sama
         $vtb = array_count_values($dtb);
-        // $testt = array_count_values($dgiz);
         dump($vtb);
 
-        $panjang = count($vtb);
-        echo 'banyak jenis data yang ada yakni';
-        dump($panjang);
-
-        //menentukan nilai terbesar dalam array
-        echo "<br>"; // using array_search()
-        echo "nilai yang paling banyak muncul yakni :";
-        //hasil dari knn status gizi
+        //menentukan hasil klasifikasi tinggi
         $rtb = array_search(max($vtb), $vtb);
 
         //update data di table knn
