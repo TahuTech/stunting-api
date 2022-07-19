@@ -43,7 +43,6 @@ class aksiController extends Controller
         $datasettb = [];
         $datasetlk = [];
 
-
         $result =  DB::select('select * from datasets');
 
         foreach ($result as $row) {
