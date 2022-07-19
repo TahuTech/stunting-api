@@ -86,17 +86,22 @@ class aksiController extends Controller
             array_push($dgiz, $row->dgizi);
         }
 
-        die;
-        dump($dgiz);
+        // die;
+        // dump($dgiz);
 
         //menghitung banyak data yang sama
         $vgiz = array_count_values($dgiz);
-        dump($vgiz);
+        // dump($vgiz);
 
         //menentukan hasil nilai indeks terbesar dalam array
         $rgiz = array_search(max($vgiz), $vgiz);
 
-        dump($rgiz);
+        //update kelas gizi di table knn
+        DB::table('knns')
+            ->where('id', $iddata)
+            ->update(
+                ['gizi' => $rgiz],
+            );
 
 
         ////Perhitungan Berat////
@@ -126,18 +131,27 @@ class aksiController extends Controller
         $dbb = [];
 
         foreach ($ujibb as $row) {
-            array_push($dbb, $row->dbb);
+            array_push($dbb, $row->dberat);
         }
 
-        die;
-        dump($dbb);
+        // die;
+        // dump($dbb);
 
         //menghitung banyak data yang sama dalam bb
         $vbb = array_count_values($dbb);
-        dump($vbb);
+        // dump($vbb);
 
         //menentukan hasil nilai indeks terbesar dalam array
         $rbb = array_search(max($vbb), $vbb);
+        // dump($rbb);
+        // die;
+
+        //update kelas berat di table knn
+        DB::table('knns')
+            ->where('id', $iddata)
+            ->update(
+                ['berat' => $rbb]
+            );
 
 
         ////Perhitungan tinggi////
@@ -167,25 +181,23 @@ class aksiController extends Controller
         $dtb = [];
 
         foreach ($ujitb as $row) {
-            array_push($dtb, $row->dtb);
+            array_push($dtb, $row->dtinggi);
         }
 
-        die;
-        dump($dtb);
+        // die;
+        // dump($dtb);
 
         //menghitung banyak data yang sama
         $vtb = array_count_values($dtb);
-        dump($vtb);
+        // dump($vtb);
 
         //menentukan hasil klasifikasi tinggi
         $rtb = array_search(max($vtb), $vtb);
 
-        //update data di table knn
+        //update kelas tinggi di table knn
         DB::table('knns')
             ->where('id', $iddata)
             ->update(
-                ['gizi' => $rgiz],
-                ['berat' => $rbb],
                 ['tinggi' => $rtb]
             );
 
@@ -193,8 +205,11 @@ class aksiController extends Controller
         dump($u);
         dump($bb);
         dump($tb);
+        echo "hasil kelas baru gizi rgiz  : ";
         dump($rgiz);
+        echo "hasil kelas baru berat rbb  : ";
         dump($rbb);
+        echo "hasil kelas baru tinggi rtb  : ";
         dump($rtb);
 
         DB::table('datasets')->insert([
@@ -205,7 +220,6 @@ class aksiController extends Controller
             'dgizi' => $rgiz,
             'dberat' => $rbb,
             'dtinggi' => $rtb,
-            'dstunting' => 1
         ]);
     }
 
