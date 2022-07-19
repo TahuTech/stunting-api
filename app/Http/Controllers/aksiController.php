@@ -560,32 +560,32 @@ class aksiController extends Controller
         $rgiz = array_search(max($vgiz), $vgiz);
         echo $rgiz;
 
-        //update data di table knn
+        // //update data di table knn
 
-        DB::table('knns')
-            ->where('id', $iddata)
-            ->update(
-                ['gizi' => $rgiz]
-            );
+        // DB::table('knns')
+        //     ->where('id', $iddata)
+        //     ->update(
+        //         ['gizi' => $rgiz]
+        //     );
 
-        //masukkan hasil knn ke dalam datasets
-        dump($u);
-        dump($bb);
-        dump($tb);
-        dump($lkkepala);
-        dump($rgiz);
+        // //masukkan hasil knn ke dalam datasets
+        // dump($u);
+        // dump($bb);
+        // dump($tb);
+        // dump($lkkepala);
+        // dump($rgiz);
 
-        DB::table('datasets')->insert([
-            'du' => $u,
-            'dbb' => $bb,
-            'dtb' => $tb,
-            'dlkkepala' => $lkkepala,
-            'jarak' => 0,
-            'dgizi' => $rgiz,
-            'dberat' => 1,
-            'dtinggi' => 1,
-            'dstunting' => 1
-        ]);
+        // DB::table('datasets')->insert([
+        //     'du' => $u,
+        //     'dbb' => $bb,
+        //     'dtb' => $tb,
+        //     'dlkkepala' => $lkkepala,
+        //     'jarak' => 0,
+        //     'dgizi' => $rgiz,
+        //     'dberat' => 1,
+        //     'dtinggi' => 1,
+        //     'dstunting' => 1
+        // ]);
     }
 
     /**
