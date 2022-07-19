@@ -17,7 +17,7 @@ class DatasetController extends Controller
      */
     public function index()
     {
-        $dataset = Dataset::orderBy('jarak', 'ASC')->get();
+        $dataset = Dataset::orderBy('id', 'ASC')->get();
         $response = [
             'message' => 'Dataset dari jarak yang terkecil',
             'data' => $dataset
