@@ -25,13 +25,11 @@ class aksiController extends Controller
         $u = $newdata->u;
         $bb = $newdata->bb;
         $tb = $newdata->tb;
-        $lkkepala = $newdata->lkkepala;
 
         //data last berhasil
         // dump($u);
         // dump($bb);
         // dump($tb);
-        // dump($lkkepala);
         // die;
 
         //hitung banyak dataset
@@ -41,7 +39,6 @@ class aksiController extends Controller
         $datasetU = [];
         $datasetbb = [];
         $datasettb = [];
-        $datasetlk = [];
 
         $result =  DB::select('select * from datasets');
 
@@ -49,14 +46,12 @@ class aksiController extends Controller
             array_push($datasetU, $row->du);
             array_push($datasetbb, $row->dbb);
             array_push($datasettb, $row->dtb);
-            array_push($datasetlk, $row->dlkkepala);
         }
 
         //select dataset berhasil
         // dump($datasetU);
         // dump($datasetbb);
         // dump($datasettb);
-        // dump($datasetlk);
         // die;
 
         ////Perhitungan Gizi////
@@ -198,7 +193,6 @@ class aksiController extends Controller
         dump($u);
         dump($bb);
         dump($tb);
-        dump($lkkepala);
         dump($rgiz);
         dump($rbb);
         dump($rtb);
@@ -207,7 +201,6 @@ class aksiController extends Controller
             'du' => $u,
             'dbb' => $bb,
             'dtb' => $tb,
-            'dlkkepala' => $lkkepala,
             'jarak' => 0,
             'dgizi' => $rgiz,
             'dberat' => $rbb,

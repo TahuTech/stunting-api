@@ -38,11 +38,9 @@ class DatasetController extends Controller
             'du' => ['required', 'numeric'],
             'dbb' => ['required', 'numeric'],
             'dtb' => ['required', 'numeric'],
-            'dlkkepala' => ['required', 'numeric'],
             'dgizi' => ['required', 'numeric'],
             'dtinggi' => ['required', 'numeric'],
             'dberat' => ['required', 'numeric'],
-            'dstunting' => ['required', 'numeric']
         ]);
 
         if ($validator->fails()) {
@@ -99,12 +97,10 @@ class DatasetController extends Controller
             'du' => ['required', 'numeric'],
             'dbb' => ['required', 'numeric'],
             'dtb' => ['required', 'numeric'],
-            'dlkkepala' => ['required', 'numeric'],
             'jarak' => ['required', 'numeric'],
             'dgizi' => ['required', 'numeric'],
             'dtinggi' => ['required', 'numeric'],
             'dberat' => ['required', 'numeric'],
-            'dstunting' => ['required', 'numeric']
         ]);
 
         if ($validator->fails()) {

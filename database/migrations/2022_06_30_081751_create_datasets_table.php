@@ -18,12 +18,10 @@ class CreateDatasetsTable extends Migration
             $table->double('du');
             $table->double('dbb');
             $table->double('dtb');
-            $table->double('dlkkepala');
             $table->double('jarak')->nullable();
             $table->enum('dgizi', ['1', '2', '3', '4']);
             $table->enum('dberat', ['1', '2', '3', '4']);
             $table->enum('dtinggi', ['1', '2', '3', '4']);
-            $table->enum('dstunting', ['1', '2']);
         });
     }
 
