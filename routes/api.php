@@ -47,5 +47,11 @@ Route::get('/knns', [KnnController::class, 'lastdata']);
 //default route from api
 Route::apiResource('/aksi', App\Http\Controllers\aksiController::class);
 
-//custom route for gizi
-// Route::get('/aksi/gizi', [aksiController::class, 'gizi']);
+//custom route for knn gizi
+// Route::get('/aksi/gizi', [aksiController::class, 'knngizi']);
+
+//custom route for knn berat
+// Route::get('/aksi/berat', [aksiController::class, 'knnberat']);
+
+//custom route for knn tinggi
+// Route::get('/aksi/tinggi', [aksiController::class, 'knntinggi']);
