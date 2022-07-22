@@ -7,6 +7,7 @@ use App\Models\Dataset;
 use App\Models\Knn;
 use Illuminate\Http\Request;
 use DB;
+use Illuminate\Http\Response;
 use Illuminate\Support\Facades\DB as FacadesDB;
 
 class aksiController extends Controller
@@ -202,15 +203,15 @@ class aksiController extends Controller
             );
 
         //masukkan hasil knn ke dalam datasets
-        dump($u);
-        dump($bb);
-        dump($tb);
-        echo "hasil kelas baru gizi rgiz  : ";
-        dump($rgiz);
-        echo "hasil kelas baru berat rbb  : ";
-        dump($rbb);
-        echo "hasil kelas baru tinggi rtb  : ";
-        dump($rtb);
+        // dump($u);
+        // dump($bb);
+        // dump($tb);
+        // echo "hasil kelas baru gizi rgiz  : ";
+        // dump($rgiz);
+        // echo "hasil kelas baru berat rbb  : ";
+        // dump($rbb);
+        // echo "hasil kelas baru tinggi rtb  : ";
+        // dump($rtb);
 
         DB::table('datasets')->insert([
             'du' => $u,
@@ -221,6 +222,15 @@ class aksiController extends Controller
             'dberat' => $rbb,
             'dtinggi' => $rtb,
         ]);
+
+
+        $aksi = Knn::orderBy('id', 'desc')->first();;
+        $response = [
+            'message' => 'KNN Dihitung',
+            'data' => $aksi
+        ];
+
+        return response()->json($response, Response::HTTP_OK);
     }
 
 

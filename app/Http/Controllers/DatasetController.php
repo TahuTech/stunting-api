@@ -138,7 +138,7 @@ class DatasetController extends Controller
         try {
             $dataset->delete();
             $response = [
-                'message' => 'Dataset Diupdate',
+                'message' => 'Dataset Dihapus',
                 'data' => $dataset
             ];
 
