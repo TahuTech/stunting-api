@@ -10,6 +10,7 @@ use Illuminate\Http\Exceptions\HttpResponseException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use App\Http\Controllers\mysql_query;
+use Illuminate\Support\Facades\DB;
 use Symfony\Component\HttpFoundation\Response;
 
 class KnnController extends Controller
@@ -21,23 +22,15 @@ class KnnController extends Controller
      */
     public function index()
     {
-        $Knn = Knn::orderBy('id_balita', 'ASC')->get();
+        // $Knn = Knn::orderBy('id_balita', 'ASC')->get();
+        $Knnname = DB::select('SELECT * FROM knns AS idbali join balitas as namabali on idbali.id_balita = namabali.id');
+
         $response = [
             'message' => 'Daftar Status Balita',
-            'data' => $Knn
+            'data' => $Knnname
         ];
 
         return response()->json($response, Response::HTTP_OK);
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
     }
 
     /**
@@ -87,23 +80,14 @@ class KnnController extends Controller
     public function show($id)
     {
         $Knn = Knn::findOrFail($id);
+        // $Knn = DB::select('SELECT * FROM knns AS idbali join balitas as namabali on idbali.id_balita = namabali.id where id_balita=' . $id);
+
         $response = [
             'message' => 'Detail data Knn',
             'data' => $Knn
         ];
 
         return response()->json($response, Response::HTTP_OK);
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
     }
 
     /**
