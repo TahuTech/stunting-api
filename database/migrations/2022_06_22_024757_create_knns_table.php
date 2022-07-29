@@ -25,7 +25,7 @@ class CreateKnnsTable extends Migration
             $table->enum('tinggi', ['1', '2', '3', '4'])->nullable();
             $table->timestamps();
 
-            $table->foreign('id_balita')->references('id')->on('balitas');
+            $table->foreign('id_balita')->references('idb')->on('balitas');
         });
     }
 

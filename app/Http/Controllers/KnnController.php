@@ -23,7 +23,9 @@ class KnnController extends Controller
     public function index()
     {
         // $Knn = Knn::orderBy('id_balita', 'ASC')->get();
-        $Knnname = DB::select('SELECT * FROM knns AS idbali join balitas as namabali on idbali.id_balita = namabali.id');
+        // $Knnname = DB::select('SELECT * FROM knns AS idbali join balitas as namabali on idbali.id_balita = namabali.id');
+        $Knnname = DB::select('SELECT * FROM knns join balitas on knns.id_balita = balitas.idb');
+
 
         $response = [
             'message' => 'Daftar Status Balita',

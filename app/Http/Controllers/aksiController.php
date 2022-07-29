@@ -224,13 +224,13 @@ class aksiController extends Controller
         ]);
 
 
-        $aksi = Knn::orderBy('id', 'desc')->first();;
-        $response = [
-            'message' => 'KNN Dihitung',
-            'data' => $aksi
-        ];
+        // $aksi = Knn::orderBy('id', 'desc')->first();;
+        // $response = [
+        //     'message' => 'KNN Dihitung',
+        //     'data' => $aksi
+        // ];
 
-        return response()->json($response, Response::HTTP_OK);
+        // return response()->json($response, Response::HTTP_OK);
     }
 
 
