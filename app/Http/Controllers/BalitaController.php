@@ -36,6 +36,7 @@ class BalitaController extends Controller
     public function store(Request $request)
     {
         $validator = Validator::make($request->all(), [
+            'nik' => ['required'],
             'nama' => ['required']
         ]);
 
@@ -90,6 +91,7 @@ class BalitaController extends Controller
         $balita = Balita::findOrFail($id);
 
         $validator = Validator::make($request->all(), [
+            'nik' => ['required'],
             'nama' => ['required']
         ]);
 
