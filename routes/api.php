@@ -3,6 +3,7 @@
 use App\Http\Controllers\aksiController;
 use App\Http\Controllers\BalitaController;
 use App\Http\Controllers\DatasetController;
+use App\Http\Controllers\infoController;
 use App\Http\Controllers\KnnController;
 use App\Http\Controllers\SaranController;
 use Illuminate\Http\Request;
@@ -55,3 +56,8 @@ Route::apiResource('/aksi', App\Http\Controllers\aksiController::class);
 
 //custom route for knn tinggi
 // Route::get('/aksi/tinggi', [aksiController::class, 'knntinggi']);
+
+//custom route for info
+Route::get('/info', [infoController::class, 'index']);
+Route::get('/infonik', [infoController::class, 'balitanik']);
+Route::get('/infonikb', [infoController::class, 'balitanikb']);
