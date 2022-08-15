@@ -10,6 +10,6 @@ class Dataset extends Model
     use HasFactory;
 
     protected $fillable = [
-        'du', 'dbb', 'dtb', 'jarak', 'dgizi', 'dberat', 'dtinggi'
+        'du', 'dbb', 'dtb', 'jarak', 'dgizi', 'dberat', 'dtinggi', 'dstunting'
     ];
 }

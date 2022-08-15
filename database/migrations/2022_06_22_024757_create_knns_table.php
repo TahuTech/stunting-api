@@ -23,7 +23,7 @@ class CreateKnnsTable extends Migration
             $table->enum('gizi', ['1', '2', '3', '4'])->nullable();
             $table->enum('berat', ['1', '2', '3', '4'])->nullable();
             $table->enum('tinggi', ['1', '2', '3', '4'])->nullable();
-            $table->timestamps();
+            $table->enum('stunting', ['1', '2'])->nullable();
 
             $table->foreign('id_balita')->references('idb')->on('balitas');
         });

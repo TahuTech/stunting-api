@@ -41,6 +41,7 @@ class DatasetController extends Controller
             'dgizi' => ['required', 'numeric'],
             'dtinggi' => ['required', 'numeric'],
             'dberat' => ['required', 'numeric'],
+            'dstunting' => ['required', 'numeric'],
         ]);
 
         if ($validator->fails()) {
@@ -101,6 +102,7 @@ class DatasetController extends Controller
             'dgizi' => ['required', 'numeric'],
             'dtinggi' => ['required', 'numeric'],
             'dberat' => ['required', 'numeric'],
+            'dstunting' => ['required', 'numeric'],
         ]);
 
         if ($validator->fails()) {

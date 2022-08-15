@@ -11,6 +11,6 @@ class Knn extends Model
     use HasFactory;
 
     protected $fillable = [
-        'id_balita', 'u', 'bb', 'tb', 'bulan', 'gizi', 'berat', 'tinggi'
+        'id_balita', 'u', 'bb', 'tb', 'bulan', 'gizi', 'berat', 'tinggi', 'stunting'
     ];
 }

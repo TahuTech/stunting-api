@@ -14,8 +14,9 @@ class CreateBalitasTable extends Migration
     public function up()
     {
         Schema::create('balitas', function (Blueprint $table) {
-            $table->bigIncrements('idb');
-            $table->bigInteger('nik')->length(16);
+            $table->unsignedBigInteger('idb')->primary();
+            // $table->bigIncrements('idb');
+            // $table->bigInteger('nik')->length(16);
             $table->string('nama');
         });
     }
