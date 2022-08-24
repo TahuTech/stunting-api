@@ -61,3 +61,5 @@ Route::apiResource('/aksi', App\Http\Controllers\aksiController::class);
 Route::get('/info', [infoController::class, 'index']);
 Route::get('/infonik', [infoController::class, 'balitanik']);
 Route::get('/infonikb', [infoController::class, 'balitanikb']);
+Route::get('/infonorm', [infoController::class, 'balitanorm']);
+Route::get('/infostun', [infoController::class, 'balitastun']);
