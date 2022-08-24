@@ -82,7 +82,7 @@ class KnnController extends Controller
     public function show($id)
     {
         $Knn = Knn::findOrFail($id);
-        // $Knn = DB::select('SELECT * FROM knns AS idbali join balitas as namabali on idbali.id_balita = namabali.id where id_balita=' . $id);
+        //$Knn = DB::select('SELECT * FROM knns join balitas on knns.id_balita = balitas.idb where id=' . $id);
 
         $response = [
             'message' => 'Detail data Knn',

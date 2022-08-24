@@ -40,6 +40,9 @@ class aksiController extends Controller
         $datasetU = [];
         $datasetbb = [];
         $datasettb = [];
+        $datasetdgiz = [];
+        $datasetdbb = [];
+        $datasetdtb = [];
 
         $result =  DB::select('select * from datasets');
 
@@ -47,6 +50,9 @@ class aksiController extends Controller
             array_push($datasetU, $row->du);
             array_push($datasetbb, $row->dbb);
             array_push($datasettb, $row->dtb);
+            array_push($datasetdgiz, $row->dgizi);
+            array_push($datasetdbb, $row->dberat);
+            array_push($datasetdtb, $row->dtb);
         }
 
         //select dataset berhasil
@@ -202,6 +208,56 @@ class aksiController extends Controller
                 ['tinggi' => $rtb]
             );
 
+
+        ////Perhitungan Status Stunting////
+        //perhitungan euclidian status stunting (gizi/berat/tinggi)
+        for ($i = 0; $i < $Cdataset; $i++) {
+            $x7 = pow(($datasetdgiz[$i] - $rgiz), 2);
+            $x8 = pow(($datasetdbb[$i] - $rbb), 2);
+            $x9 = pow(($datasetdtb[$i] - $rtb), 2);
+
+            //akar kuadrad
+            $eucstun = sqrt($x7 + $x8 + $x9);
+
+            //update jarak dalam database dataset untuk klasifikasi stunting
+            DB::table('datasets')
+                ->where('id', 1 + $i)
+                ->update(
+                    ['jarak' => $eucstun]
+                );
+        }
+
+        //urutkan data dari yang terdekat jaraknya
+        $ujistun =  DB::select('select * from datasets order by jarak limit ' . $k);
+
+        // dump($ujistun);
+        // die;
+
+        //variabel tampung yang menjadi acuan dari dataset
+        $dstun = [];
+
+        foreach ($ujistun as $row) {
+            array_push($dstun, $row->dstunting);
+        }
+
+        // die;
+        // dump($dstun);
+
+        //menghitung banyak data yang sama
+        $vstun = array_count_values($dstun);
+        // dump($vstun);
+
+        //menentukan hasil klasifikasi tinggi
+        $rstun = array_search(max($vstun), $vstun);
+
+        //update kelas tinggi di table knn
+        DB::table('knns')
+            ->where('id', $iddata)
+            ->update(
+                ['stunting' => $rstun]
+            );
+
+
         //masukkan hasil knn ke dalam datasets
         // dump($u);
         // dump($bb);
@@ -213,15 +269,17 @@ class aksiController extends Controller
         // echo "hasil kelas baru tinggi rtb  : ";
         // dump($rtb);
 
-        DB::table('datasets')->insert([
-            'du' => $u,
-            'dbb' => $bb,
-            'dtb' => $tb,
-            'jarak' => 0,
-            'dgizi' => $rgiz,
-            'dberat' => $rbb,
-            'dtinggi' => $rtb,
-        ]);
+        //ini dicoment dulu
+        // DB::table('datasets')->insert([
+        //     'du' => $u,
+        //     'dbb' => $bb,
+        //     'dtb' => $tb,
+        //     'jarak' => 0,
+        //     'dgizi' => $rgiz,
+        //     'dberat' => $rbb,
+        //     'dtinggi' => $rtb,
+        //     'dstunting' => $rstun,
+        // ]);
 
 
         // $aksi = Knn::orderBy('id', 'desc')->first();;
