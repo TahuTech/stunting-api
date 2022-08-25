@@ -71,6 +71,67 @@ class infoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function gizle()
+    {
+        $gizle = DB::select('SELECT * FROM knns join balitas on knns.id_balita = balitas.idb where gizi=1 ');
+        $response = [
+            'message' => 'Balita Gizi Lebih',
+            'data' => $gizle
+        ];
+
+        return response()->json($response, Response::HTTP_OK);
+    }
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function gizba()
+    {
+        $gizba = DB::select('SELECT * FROM knns join balitas on knns.id_balita = balitas.idb where gizi=2 ');
+        $response = [
+            'message' => 'Balita Gizi Baik',
+            'data' => $gizba
+        ];
+
+        return response()->json($response, Response::HTTP_OK);
+    }
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function gizku()
+    {
+        $gizku = DB::select('SELECT * FROM knns join balitas on knns.id_balita = balitas.idb where gizi=3 ');
+        $response = [
+            'message' => 'Balita Gizi Kurang',
+            'data' => $gizku
+        ];
+
+        return response()->json($response, Response::HTTP_OK);
+    }
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function gizbu()
+    {
+        $gizbu = DB::select('SELECT * FROM knns join balitas on knns.id_balita = balitas.idb where gizi=1 ');
+        $response = [
+            'message' => 'Balita Gizi Buruk',
+            'data' => $gizbu
+        ];
+
+        return response()->json($response, Response::HTTP_OK);
+    }
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function balitanik()
     {
         $balita = Balita::orderBy('idb', 'DESC')->get();

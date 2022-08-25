@@ -63,3 +63,9 @@ Route::get('/infonik', [infoController::class, 'balitanik']);
 Route::get('/infonikb', [infoController::class, 'balitanikb']);
 Route::get('/infonorm', [infoController::class, 'balitanorm']);
 Route::get('/infostun', [infoController::class, 'balitastun']);
+
+//custom route untuk info gizi
+Route::get('/gizle', [infoController::class, 'gizle']);
+Route::get('/gizba', [infoController::class, 'gizba']);
+Route::get('/gizku', [infoController::class, 'gizku']);
+Route::get('/gizbu', [infoController::class, 'gizbu']);
