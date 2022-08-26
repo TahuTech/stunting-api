@@ -57,6 +57,9 @@ Route::apiResource('/aksi', App\Http\Controllers\aksiController::class);
 //custom route for knn tinggi
 // Route::get('/aksi/tinggi', [aksiController::class, 'knntinggi']);
 
+//custom route for count all info
+Route::get('/count', [infoController::class, 'countall']);
+
 //custom route for info
 Route::get('/info', [infoController::class, 'index']);
 Route::get('/infonik', [infoController::class, 'balitanik']);

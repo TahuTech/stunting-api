@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Balita;
+use App\Models\Info;
+use App\Models\Knn;
 use Illuminate\Database\QueryException;
 use Illuminate\Http\Exceptions\HttpResponseException;
 use Illuminate\Support\Facades\DB;
@@ -19,19 +21,83 @@ class infoController extends Controller
      */
     public function index()
     {
-        $allbalita = DB::table('balitas')->count();
-        $stun = DB::table('balitas')->count();
-        $norm = DB::table('balitas')->count();
-        // dump($allbalita);
-        // die;
+        $info = Info::orderBy('id', 'desc')->get();
         $response = [
-            'message' => 'jumlah data balita terdaftar',
-            'allbalita' => $allbalita,
-            'stun' => $stun,
-            'norm' => $norm,
+            'message' => 'Info Statistik',
+            'data' => $info
         ];
 
         return response()->json($response, Response::HTTP_OK);
+    }
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function countall()
+    {
+        $jml = DB::table('balitas')->count();
+        $norm = Knn::where('stunting', '=', '2')->count();
+        $stun = Knn::where('stunting', '=', '1')->count();
+
+        $gizle = Knn::where('gizi', '=', '1')->count();
+        $gizba = Knn::where('gizi', '=', '2')->count();
+        $gizku = Knn::where('gizi', '=', '3')->count();
+        $gizbu = Knn::where('gizi', '=', '4')->count();
+
+        $tintin = Knn::where('tinggi', '=', '1')->count();
+        $tinnor = Knn::where('tinggi', '=', '2')->count();
+        $tinpen = Knn::where('tinggi', '=', '3')->count();
+        $tinspen = Knn::where('tinggi', '=', '4')->count();
+
+        $berle = Knn::where('berat', '=', '1')->count();
+        $berba = Knn::where('berat', '=', '2')->count();
+        $berku = Knn::where('berat', '=', '3')->count();
+        $bersku = Knn::where('berat', '=', '4')->count();
+
+        // dump($jml);
+        // dump($norm);
+        // dump($stun);
+
+        // dump($gizle);
+        // dump($gizba);
+        // dump($gizku);
+        // dump($gizbu);
+
+        // dump($tintin);
+        // dump($tinnor);
+        // dump($tinpen);
+        // dump($tinspen);
+
+        // dump($berle);
+        // dump($berba);
+        // dump($berku);
+        // dump($bersku);
+
+        // die;
+        //masuk kedalam database
+        DB::table('infos')
+            ->where('id', 1)
+            ->update(
+                [
+                    'jmlbb' => $jml,
+                    'norm' => $norm,
+                    'stun' => $stun,
+                    'gizle' => $gizle,
+                    'gizba' => $gizba,
+                    'gizku' => $gizku,
+                    'gizbu' => $gizbu,
+                    'tintin' => $tintin,
+                    'tinnor' => $tinnor,
+                    'tinpen' => $tinpen,
+                    'tinspen' => $tinspen,
+                    'berle' => $berle,
+                    'berba' => $berba,
+                    'berku' => $berku,
+                    'bersku' => $bersku
+                ]
+            );
     }
 
     /**
