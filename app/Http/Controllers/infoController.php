@@ -184,7 +184,7 @@ class infoController extends Controller
      */
     public function gizbu()
     {
-        $gizbu = DB::select('SELECT * FROM knns join balitas on knns.id_balita = balitas.idb where gizi=1 ');
+        $gizbu = DB::select('SELECT * FROM knns join balitas on knns.id_balita = balitas.idb where gizi=4 ');
         $response = [
             'message' => 'Balita Gizi Buruk',
             'data' => $gizbu
