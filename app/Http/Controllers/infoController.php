@@ -253,6 +253,70 @@ class infoController extends Controller
 
         return response()->json($response, Response::HTTP_OK);
     }
+
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function beratt()
+    {
+        $beratt = DB::select('SELECT * FROM knns join balitas on knns.id_balita = balitas.idb where berat=1 ');
+        $response = [
+            'message' => 'Balita Obesitas Lebih',
+            'data' => $beratt
+        ];
+
+        return response()->json($response, Response::HTTP_OK);
+    }
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function bernor()
+    {
+        $bernor = DB::select('SELECT * FROM knns join balitas on knns.id_balita = balitas.idb where berat=2 ');
+        $response = [
+            'message' => 'Balita Berat Baik',
+            'data' => $bernor
+        ];
+
+        return response()->json($response, Response::HTTP_OK);
+    }
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function berkur()
+    {
+        $berkur = DB::select('SELECT * FROM knns join balitas on knns.id_balita = balitas.idb where berat=3 ');
+        $response = [
+            'message' => 'Balita Kurus',
+            'data' => $berkur
+        ];
+
+        return response()->json($response, Response::HTTP_OK);
+    }
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function berskur()
+    {
+        $berskur = DB::select('SELECT * FROM knns join balitas on knns.id_balita = balitas.idb where berat=4 ');
+        $response = [
+            'message' => 'Balita Sangat Kurus',
+            'data' => $berskur
+        ];
+
+        return response()->json($response, Response::HTTP_OK);
+    }
+
+
     /**
      * Display a listing of the resource.
      *

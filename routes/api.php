@@ -78,3 +78,9 @@ Route::get('/tinggi', [infoController::class, 'tinggi']);
 Route::get('/tingno', [infoController::class, 'tingno']);
 Route::get('/tingpen', [infoController::class, 'tingpen']);
 Route::get('/tingspen', [infoController::class, 'tingspen']);
+
+//custom route untuk info Berat balita
+Route::get('/berat', [infoController::class, 'beratt']);
+Route::get('/bernor', [infoController::class, 'bernor']);
+Route::get('/berkur', [infoController::class, 'berkur']);
+Route::get('/berskur', [infoController::class, 'berskur']);
