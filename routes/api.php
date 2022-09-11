@@ -72,3 +72,9 @@ Route::get('/gizle', [infoController::class, 'gizle']);
 Route::get('/gizba', [infoController::class, 'gizba']);
 Route::get('/gizku', [infoController::class, 'gizku']);
 Route::get('/gizbu', [infoController::class, 'gizbu']);
+
+//custom route untuk info tinggi
+Route::get('/tinggi', [infoController::class, 'tinggi']);
+Route::get('/tingno', [infoController::class, 'tingno']);
+Route::get('/tingpen', [infoController::class, 'tingpen']);
+Route::get('/tingspen', [infoController::class, 'tingspen']);

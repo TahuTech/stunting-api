@@ -198,6 +198,66 @@ class infoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function tinggi()
+    {
+        $tinggi = DB::select('SELECT * FROM knns join balitas on knns.id_balita = balitas.idb where tinggi=1 ');
+        $response = [
+            'message' => 'Balita Tinggi Lebih',
+            'data' => $tinggi
+        ];
+
+        return response()->json($response, Response::HTTP_OK);
+    }
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function tingno()
+    {
+        $tingno = DB::select('SELECT * FROM knns join balitas on knns.id_balita = balitas.idb where tinggi=2 ');
+        $response = [
+            'message' => 'Balita Tinggi Baik',
+            'data' => $tingno
+        ];
+
+        return response()->json($response, Response::HTTP_OK);
+    }
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function tingpen()
+    {
+        $tingpen = DB::select('SELECT * FROM knns join balitas on knns.id_balita = balitas.idb where tinggi=3 ');
+        $response = [
+            'message' => 'Balita Tinggi Pendek',
+            'data' => $tingpen
+        ];
+
+        return response()->json($response, Response::HTTP_OK);
+    }
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function tingspen()
+    {
+        $tingspen = DB::select('SELECT * FROM knns join balitas on knns.id_balita = balitas.idb where tinggi=4 ');
+        $response = [
+            'message' => 'Balita Tinggi Sangat Pendek',
+            'data' => $tingspen
+        ];
+
+        return response()->json($response, Response::HTTP_OK);
+    }
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function balitanik()
     {
         $balita = Balita::orderBy('idb', 'DESC')->get();
