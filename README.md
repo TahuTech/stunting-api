@@ -1,4 +1,4 @@
-# Foobar# stunting-api
+# stunting-api
 
 ## First time
 1. clone this repo 
